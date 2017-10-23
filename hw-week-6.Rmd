@@ -60,7 +60,7 @@ z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.taile
   }
   }
   
-  return(list(z, p[i]))
+  return(list(z, p[i], ))
 }
 ```
 
@@ -70,6 +70,9 @@ ztest1
 
 ```
 
-
+```{r}
+d<- "C:/Users/Audrey/Desktop/kamilar.csv"
+read.csv(d)
+```
 
   
