@@ -73,10 +73,12 @@ ztest1
 
 ```{r}
 d<- "C:/Users/Audrey/Desktop/kamilar.csv"
-read.csv(d)
+d1<- read.csv(d, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(d1)
 ```
 
 ```{r}
 library(ggplot2)
-
-  
+library(lmodel2)
+plot(data = d1, MaxLongevity_m ~ Brain_Size_Species_Mean)
+```
