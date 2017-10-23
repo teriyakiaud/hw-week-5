@@ -5,7 +5,7 @@ output: html_document
 ---
 
 ```{r}
-z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.tailed", conf.level = 0.95, alpha = 0.05, k = 10000){
+z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.tailed", conf.level = 0.95, alpha = 0.05, k = 10){
   p<- rep(NA, k) 
   #p0 stands for population proportion, p1 is pop1, p2 is pop2
   for (i in 1:k) {
@@ -54,7 +54,7 @@ z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.taile
     #under this condition normality cannot be assumed
   }
     
-  if(n * (1-p) < 5) {
+  if(n1 * (1-p1) < 5) {
       warning("conditions not met")
     #under this condition normality cannot be assumed
   }
@@ -65,7 +65,8 @@ z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.taile
 ```
 
 ```{r}
-ztest1<-z.prop.test(3, 5, 30, 35, 4, alternative = "less", conf.level = 0.95, alpha = 0.05, k = 10000)
+ztest1<-z.prop.test(.3, .5, 30, 35, .4, alternative = "less", conf.level = 0.95, alpha = 0.05, k = 10)
+ztest1
 
 ```
 
