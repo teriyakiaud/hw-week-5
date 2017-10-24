@@ -6,6 +6,7 @@ output: html_document
 
 ```{r}
 z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.tailed", conf.level = 0.95, alpha = 0.05, k = 10){
+  #this is the basic function template
   p<- rep(NA, k) 
   #p0 stands for population proportion, p1 is pop1, p2 is pop2
   for (i in 1:k) {
@@ -78,7 +79,6 @@ d1<- read.csv(d, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 head(d1)
 ```
 
-
 ```{r}
 library(ggplot2)
 g<-ggplot(data = d1, aes(x = Brain_Size_Species_Mean, y = MaxLongevity_m))
@@ -91,7 +91,8 @@ d2<-na.omit(d1)
 l<-(d2$MaxLongevity_m)
 b<-(d2$Brain_Size_Species_Mean)
 beta1 <- cor(l, b) * (sd(l)/sd(b))
-beta1
+beta1 
+#this should be slope
 ```
 
 ```{r}
