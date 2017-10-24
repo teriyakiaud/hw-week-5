@@ -78,12 +78,6 @@ d1<- read.csv(d, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 head(d1)
 ```
 
-```{r}
-library(ggplot2)
-library(lmodel2)
-plot(data = d1, MaxLongevity_m ~ Brain_Size_Species_Mean)
-
-```
 
 ```{r}
 library(ggplot2)
@@ -92,6 +86,21 @@ g<-g + geom_point()
 g <- g + geom_smooth(method = "lm", formula = y ~ x)
 g
 ```          
+```{r}
+d2<-na.omit(d1)
+l<-(d2$MaxLongevity_m)
+b<-(d2$Brain_Size_Species_Mean)
+beta1 <- cor(l, b) * (sd(l)/sd(b))
+beta1
+```
 
+```{r}
+#i don't know if this is necessary
+m<-lm(MaxLongevity_m ~ Brain_Size_Species_Mean, data = d1)
+summary(m)
 
-
+t <- coef(summary(m))
+t <- data.frame(unlist(t))
+colnames(t) <- c("MaxLongevity_m")
+t
+```
