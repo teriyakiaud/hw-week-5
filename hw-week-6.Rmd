@@ -80,11 +80,20 @@ head(d1)
 ```
 
 ```{r}
+#i don't know if this whole chunk is even necessary for this part
+m<-lm(MaxLongevity_m ~ Brain_Size_Species_Mean, data = d1)
+summary(m)
+
+
+```
+
+```{r}
 library(ggplot2)
 g<-ggplot(data = d1, aes(x = Brain_Size_Species_Mean, y = MaxLongevity_m))
 g<-g + geom_point()
 g <- g + geom_smooth(method = "lm", formula = y ~ x)
-g
+g<-g + geom_text()
+# i was really confused on how to use geom_text to make the fitted line here 
 ```          
 ```{r}
 d2<-na.omit(d1)
@@ -93,15 +102,21 @@ b<-(d2$Brain_Size_Species_Mean)
 beta1 <- cor(l, b) * (sd(l)/sd(b))
 beta1 
 #this should be slope
+
+beta0 <- mean(b) - beta1 * mean(l)
+beta0
+#my beta0 does not seem correct but that could be because beta1 is probably not correct
 ```
 
 ```{r}
-#i don't know if this is necessary
-m<-lm(MaxLongevity_m ~ Brain_Size_Species_Mean, data = d1)
-summary(m)
+ci <- confint(m, level = 0.95)  # using the results of lm()
+ci
+```
 
-t <- coef(summary(m))
-t <- data.frame(unlist(t))
-colnames(t) <- c("MaxLongevity_m")
-t
+```{r}
+m <- lm(data = d2, Brain_Size_Species_Mean ~ MaxLongevity_m)
+h_hat <- predict(m, newdata = data.frame(weight = d2$Brain_Size_Species_Mean))
+df <- data.frame(cbind(b, l, h_hat))
+names(df) <- c("x", "y", "yhat")
+head(df)
 ```
