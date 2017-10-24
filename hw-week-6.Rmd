@@ -16,7 +16,8 @@ z.prop.test<-function(p1, p2 = NULL, n1, n2 = NULL, p0, alternative = "two.taile
   if (alternative == "less") {
       p[i]<- pnorm(z, lower.tail = TRUE)
       
-      if(is.null(p2)) {
+      if(is.null(p2)) { 
+        #condition for if p2 is null
       p[i] <- pnorm(z2) 
       }
   }
