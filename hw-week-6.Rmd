@@ -82,4 +82,16 @@ head(d1)
 library(ggplot2)
 library(lmodel2)
 plot(data = d1, MaxLongevity_m ~ Brain_Size_Species_Mean)
+
 ```
+
+```{r}
+library(ggplot2)
+g<-ggplot(data = d1, aes(x = Brain_Size_Species_Mean, y = MaxLongevity_m))
+g<-g + geom_point()
+g <- g + geom_smooth(method = "lm", formula = y ~ x)
+g
+```          
+
+
+
